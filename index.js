@@ -20,7 +20,7 @@ Object.keys(fs).forEach(function (key) {
  * @param {Function} cb
  */
 klei.fs.forEachInDir = function (dir, cb) {
-  this.readdir(dir, function (err, files) {
+  klei.fs.readdir(dir, function (err, files) {
     if (err) {
       return cb(err);
     }
