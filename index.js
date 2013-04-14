@@ -32,4 +32,23 @@ klei.fs.forEachInDir = function (dir, cb) {
   });
 };
 
+/**
+ * readdir, forEach and filter in one function
+ *
+ * @param {String} dir
+ * @param {Function} filter
+ * @param {Function} cb
+ */
+klei.fs.filterDir = function (dir, filter, cb) {
+  klei.fs.forEachInDir(dir, function (err, file) {
+    if (err) {
+      return cb(err);
+    }
+    setTimeout(function () {
+      if (filter(file))
+        cb(null, file);
+    }, 0);
+  });
+};
+
 module.exports = exports = klei.fs;
