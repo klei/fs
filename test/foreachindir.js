@@ -9,4 +9,13 @@ describe('forEachInDir', function () {
       done();
     });
   });
+
+  it('can be used with deferred', function () {
+    var forEachInDir = require('deferred').promisify(fs.forEachInDir);
+    forEachInDir(__dirname).then(function (err, file) {
+      should.not.exist(err);
+      file.should.equal(__filename);
+      done();
+    });
+  });
 });
