@@ -11,7 +11,8 @@
     "fs",
     "filesystem",
     "readdir",
-    "foreach"
+    "foreach",
+    "filter"
   ],
   "author": "Joakim Bengtson <joakim@klei.se>",
   "license": "MIT",
