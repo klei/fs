@@ -25,9 +25,9 @@ klei.fs.forEachInDir = function (dir, cb) {
       return cb(err);
     }
     files.forEach(function (file) {
-      setTimeout(function () {
+      // setTimeout(function () {
         cb(null, join(dir, file));
-      }, 0);
+      // }, 0);
     });
   });
 };
@@ -48,6 +48,19 @@ klei.fs.filterDir = function (dir, filter, cb) {
       if (filter(file))
         cb(null, file);
     }, 0);
+  });
+};
+
+/**
+ * Combined readFile and JSON.parse
+ *
+ * @param {String} file
+ * @param {Function} cb
+ */
+klei.fs.readJson = function (file, cb) {
+  fs.readFile(file, 'utf-8', function (err, source) {
+    if (err) return cb(err);
+    return cb(null, JSON.parse(source));
   });
 };
 
