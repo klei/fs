@@ -42,3 +42,12 @@ Reads a directory (like fs.readdir), iterates over all files and returns the ful
     * *String* **file** - The full path to the file
 
 Reads a directory (like fs.readdir), filters the files with the given *filter* function, iterates over the filtered files and returns the full file path to the callback. (i.e. you don't have to do a `path.join(dir, file)` in order to read the file)
+
+### readJson
+
+#### Params
+
+ * *String* **file** - The file to read
+ * *Function* **cb** - A callback that is called when the file has been read and parsed:
+    * *Error* **err** - An error if something went wrong, or empty if everything is ok
+    * *String* **json** - The parsed json contents of the file
