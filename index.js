@@ -1,5 +1,6 @@
 var inherits = require('util').inherits,
     join = require('path').join,
+    dirname = require('path').dirname,
     fs = require('fs');
 
 var klei = {fs: {}};
@@ -25,9 +26,7 @@ klei.fs.forEachInDir = function (dir, cb) {
       return cb(err);
     }
     files.forEach(function (file) {
-      // setTimeout(function () {
-        cb(null, join(dir, file));
-      // }, 0);
+      cb(null, join(dir, file));
     });
   });
 };
@@ -62,6 +61,43 @@ klei.fs.readJson = function (file, cb) {
     if (err) return cb(err);
     return cb(null, JSON.parse(source));
   });
+};
+
+/**
+ * Makedir recursively, aka. mkdirp
+ *
+ * @param {String} path
+ * @param {String} mode
+ * @param {Function} cb
+ */
+klei.fs.mkdirp = function (path, mode, cb) {
+  if (typeof mode === 'function' && !cb) {
+    cb = mode;
+    mode = '0777';
+  }
+
+  fs.exists(path, function (exists) {
+    if (exists) {
+      cb(null);
+      return;
+    }
+    var parent = dirname(path);
+    klei.fs.mkdirp(parent, mode, mkdirCallback);
+  });
+
+  var mkdirCallback = function (err) {
+    if (err) {
+      cb(err);
+      return;
+    }
+    fs.mkdir(path, mode, function (err) {
+      if (err && err.code == 'EEXIST') {
+        cb(null);
+        return;
+      }
+      cb(err);
+    });
+  };
 };
 
 module.exports = exports = klei.fs;
