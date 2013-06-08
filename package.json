@@ -1,6 +1,6 @@
 {
   "name": "klei-fs",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Some nice to have addons to the native node fs module",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,9 @@
     "filesystem",
     "readdir",
     "foreach",
-    "filter"
+    "filter",
+    "mkdirp",
+    "mkdir"
   ],
   "author": "Joakim Bengtson <joakim@klei.se>",
   "license": "MIT",

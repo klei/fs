@@ -51,3 +51,14 @@ Reads a directory (like fs.readdir), filters the files with the given *filter* f
  * *Function* **cb** - A callback that is called when the file has been read and parsed:
     * *Error* **err** - An error if something went wrong, or empty if everything is ok
     * *String* **json** - The parsed json contents of the file
+
+### mkdirp
+
+#### Params
+
+ * *String* **path** - The directory path to create
+ * *String* **mode** - The mode to create the dir(s) with, defaults to `0777`
+ * *Function* **cb** - A callback that is called when the dir(s) have been created:
+    * *Error* **err** - An error if something went wrong, or empty if everything is ok
+
+Creates directories recursively, like `mkdir -p` in the shell.
