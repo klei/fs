@@ -25,8 +25,8 @@ klei.fs.forEachInDir = function (dir, cb) {
     if (err) {
       return cb(err);
     }
-    files.forEach(function (file) {
-      cb(null, join(dir, file));
+    files.forEach(function (file, index) {
+      cb(null, join(dir, file), index, files);
     });
   });
 };
