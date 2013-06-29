@@ -29,6 +29,7 @@ var fs = require('klei-fs');
     * *String* **file** - The full path to the file
     * *Number* **index** - The index of the file in the files array
     * *Array* **files** - The files array, containing only the filenames and not the full paths
+ * *Function* **emptyCb** - A callback that is called if the directory is empty
 
 Reads a directory (like fs.readdir), iterates over all files and returns the full file path to the callback. (i.e. you don't have to do a `path.join(dir, file)` in order to read the file)
 

@@ -19,15 +19,20 @@ Object.keys(fs).forEach(function (key) {
  *
  * @param {String} dir
  * @param {Function} cb
+ * @param {Function} emptyCb
  */
-klei.fs.forEachInDir = function (dir, cb) {
+klei.fs.forEachInDir = function (dir, cb, emptyCb) {
   klei.fs.readdir(dir, function (err, files) {
     if (err) {
       return cb(err);
     }
-    files.forEach(function (file, index) {
-      cb(null, join(dir, file), index, files);
-    });
+    if (files.length) {
+      files.forEach(function (file, index) {
+        cb(null, join(dir, file), index, files);
+      });
+    } else if (emptyCb) {
+      emptyCb();
+    }
   });
 };
 

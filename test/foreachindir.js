@@ -22,4 +22,8 @@ describe('forEachInDir', function () {
     });
 
   });
+
+  it('should call the given emptyCallback when the given dir has no files', function (done) {
+    fs.forEachInDir(join(__dirname, 'emptydir'), function noop() {}, done);
+  });
 });
